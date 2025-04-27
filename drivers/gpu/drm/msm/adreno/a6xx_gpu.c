@@ -2733,7 +2733,7 @@ static struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
 	return gpu;
 }
 
-const struct adreno_gpu_funcs a6xx_gpu_funcs = {
+static const struct adreno_gpu_funcs a6xx_gpu_funcs = {
 	.base = {
 		.get_param = adreno_get_param,
 		.set_param = adreno_set_param,
