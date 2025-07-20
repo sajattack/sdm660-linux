@@ -383,7 +383,7 @@ static int aw2013_probe(struct i2c_client *client)
 		goto error_reg;
 	}
 
-	if (chipid != AW2013_RSTR_CHIP_ID) {
+	if (chipid != AW2013_RSTR_CHIP_ID && chipid != 0x09) {
 		dev_err(&client->dev, "Chip reported wrong ID: %x\n",
 			chipid);
 		ret = -ENODEV;

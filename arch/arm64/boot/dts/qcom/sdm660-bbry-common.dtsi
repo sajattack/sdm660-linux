@@ -302,6 +302,51 @@
 	};
 };
 
+
+&blsp_i2c2 {
+	status = "okay";
+
+	/* Awinic aw2027 */
+	keypad_backlight@64 {
+		compatible = "awinic,aw2013";
+		reg = <0x64>;
+
+		vcc-supply = <&vreg_bob>;
+		vio-supply = <&vreg_l8a_1p8>;
+		
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		led@0 {
+			reg = <0>;
+			color = <LED_COLOR_ID_RED>;
+			function = LED_FUNCTION_KBD_BACKLIGHT;
+			led-max-microamp = <30000>;
+			default-state = "on";
+			default-brightness = "200";
+		};
+
+		led@1 {
+			reg = <1>;
+			color = <LED_COLOR_ID_GREEN>;
+			function = LED_FUNCTION_KBD_BACKLIGHT;
+			led-max-microamp = <30000>;
+			default-state = "on";
+			default-brightness = "200";
+		};
+
+		led@2 {
+			reg = <2>;
+			color = <LED_COLOR_ID_BLUE>;
+			function = LED_FUNCTION_KBD_BACKLIGHT;
+			led-max-microamp = <30000>;
+			default-state = "on";
+			default-brightness = "200";
+		};
+	};
+};
+
+
 &blsp_i2c4 {
 	#address-cells = <1>;
 	#size-cells = <0>;
