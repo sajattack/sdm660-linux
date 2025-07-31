@@ -11,6 +11,7 @@
 #include "pm660l.dtsi"
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/input/gpio-keys.h>
+#include <dt-bindings/leds/common.h>
 
 /delete-node/ &qhee_code;
 /delete-node/ &tz_mem;
@@ -323,7 +324,7 @@
 			function = LED_FUNCTION_KBD_BACKLIGHT;
 			led-max-microamp = <30000>;
 			default-state = "on";
-			default-brightness = "200";
+			default-brightness = <200>;
 		};
 
 		led@1 {
@@ -332,7 +333,7 @@
 			function = LED_FUNCTION_KBD_BACKLIGHT;
 			led-max-microamp = <30000>;
 			default-state = "on";
-			default-brightness = "200";
+			default-brightness = <200>;
 		};
 
 		led@2 {
@@ -341,7 +342,7 @@
 			function = LED_FUNCTION_KBD_BACKLIGHT;
 			led-max-microamp = <30000>;
 			default-state = "on";
-			default-brightness = "200";
+			default-brightness = <200>;
 		};
 	};
 };
