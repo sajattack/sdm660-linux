@@ -268,6 +268,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-asus-x00td.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-bbry-luna-boe.dtb
+dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-bbry-luna-syna.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-motorola-beckham.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-xiaomi-tulip.dtb
