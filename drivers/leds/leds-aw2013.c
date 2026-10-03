@@ -255,7 +255,7 @@ static int aw2013_brightness_set(struct led_classdev *cdev,
 
 	mutex_lock(&led->chip->mutex);
 
-	if (aw2013_chip_in_use(led->chip)) {
+	if (!led->chip->enabled) {
 		ret = aw2013_chip_enable(led->chip);
 		if (ret)
 			goto error;
@@ -265,22 +265,24 @@ static int aw2013_brightness_set(struct led_classdev *cdev,
 
 	ret = regmap_write(led->chip->regmap, AW2013_REG_PWM(num), brightness);
 	if (ret)
-		goto error;
+		goto error_reg;
 
 	if (brightness) {
 		ret = regmap_update_bits(led->chip->regmap, AW2013_LCTR,
 					 AW2013_LCTR_LE(num), 0xFF);
+		if (ret)
+			goto error_reg;
+
 	} else {
 		ret = regmap_update_bits(led->chip->regmap, AW2013_LCTR,
 					 AW2013_LCTR_LE(num), 0);
 		if (ret)
-			goto error;
+			goto error_reg;
 		ret = regmap_update_bits(led->chip->regmap, AW2013_LCFG(num),
 					 AW2013_LCFG_MD, 0);
 	}
-	if (ret)
-		goto error;
 
+error_reg:
 	if (!aw2013_chip_in_use(led->chip))
 		aw2013_chip_disable(led->chip);
 
