@@ -369,8 +369,6 @@ static int aw2013_probe_dt(struct aw2013 *chip)
 	if (!count || count > AW2013_MAX_LEDS)
 		return -EINVAL;
 
-	regmap_write(chip->regmap, AW2013_RSTR, AW2013_RSTR_RESET);
-
 	for_each_available_child_of_node_scoped(np, child) {
 		struct led_init_data init_data = {};
 		u32 source;
@@ -489,6 +487,12 @@ static int aw2013_probe(struct i2c_client *client)
 	ret = devm_add_action(&client->dev, aw2013_chip_disable_action, chip);
 	if (ret)
 		goto error_reg;
+
+	ret = regmap_write(chip->regmap, AW2013_RSTR, AW2013_RSTR_RESET);
+	if (ret) {
+		dev_err(&chip->client->dev, "Failed to reset the chip: %d\n", ret);
+		goto error_reg;
+	}
 
 	ret = aw2013_probe_dt(chip);
 	if (ret < 0)
